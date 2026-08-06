@@ -28,38 +28,16 @@ const TASKS=[
 const doneCount=t=>TASKS.reduce((n,k)=>n+(t[k.key]?1:0),0);
 const isComplete=t=>t.status==="DONE"||t.status==="NOT_INT"||doneCount(t)===4;
 
-/* ---------- Seed (Aug 2026 calendar) ---------- */
-const SEED={
-  "2026-08-02":["Justin Marce"],
-  "2026-08-03":["Felicia Labbe","Cathrine Hoppers","Lory Dalueg","Chelsea Vanderstoop","Iuliana Doljescu","Gillian Bottomley"],
-  "2026-08-04":["Sarabh Multani","Justin Ruscheinski","Alexis Smith","Kelsey Pfeil","Cheryl Smith Remax Comp","Carol Nagy","Shima Ibrahim","Mark MacKay","Trevor Wieler","Mark St Pierre"],
-  "2026-08-05":["Zeanne Coronel","Shirral Watson","Eli Ndatuje","Daksh Patel","Mohammad Ali","Lani Calmusky","Steve Mondor"],
-  "2026-08-06":["Julianah Tokode","Andre Deslauriers","Mary Allen","Tianna Heltman","Donna Martell","Cosmic Pizza & Donair C/C","Minachi Gounder","Maulik Doshi"],
-  "2026-08-07":["Helmuth Sultanow","Kristie-Anne Macdonald","Kristina Mutti","Thomas Wallace","Hardip Mutti","Zack Poulpon"],
-  "2026-08-08":["Kristopher Bryan","Teresa Denham","Breanne Urquhart","Janelle Lall","Edward Murphy"],
-  "2026-08-10":["Moe Nahal","Nicholas Loranger"],
-  "2026-08-11":["Chelsea Van Dyke","Premila Singh","Maria Theoret"],
-  "2026-08-12":["Lindsey Kologie","Pat Sulek"],
-  "2026-08-13":["James O Driscoll"],
-  "2026-08-14":["Sandy Roux","Ron Kraemer","Chelsea Lemay","Sarah Helzer","Will Chmilar"],
-  "2026-08-15":["Moe Nahal","Ryan Serquina","Colleyn Gogna"],
-  "2026-08-16":["Christine Martins"],
-  "2026-08-17":["Alexis McDowell"],
-  "2026-08-19":["Saleh Alkharoubi"],
-  "2026-08-20":["Shelly Bearss","Racheal Oluwole","Edwin Zern"],
-  "2026-08-21":["Megan Spears","Nolan Nieckar","Amy Kaur"],
-  "2026-08-22":["Joey Arora"],
-};
 function newClient(name,serviceDate){
   return {id:S.uid(),kind:"client",name:name.trim(),serviceDate,followDate:S.addDays(serviceDate,1),
     status:"NEW",followUp:false,reviewSent:false,recurring:false,ghlUpdated:false,phone:"",notes:"",createdAt:Date.now()};
 }
-function seedIfEmpty(){
-  if(S.all(COLL).length)return;
-  const seen=new Set();
-  Object.entries(SEED).forEach(([d,names])=>names.forEach(n=>{
-    const k=n.toLowerCase()+"|"+d;if(seen.has(k))return;seen.add(k);S.put(COLL,newClient(n,d));
-  }));
+// The app starts empty — you add clients daily (Sync from Claude / Add day).
+// One-time cleanup removes the demo clients that shipped with earlier builds.
+function purgeSeedOnce(){
+  if(localStorage.getItem("rcc_seed_purged_v1"))return;
+  S.all(COLL).forEach(c=>S.del(COLL,c.id));
+  localStorage.setItem("rcc_seed_purged_v1","1");
 }
 
 /* ---------- Card ---------- */
@@ -247,7 +225,7 @@ document.getElementById("syncBtn").addEventListener("click",()=>sync(true));
 /* ---------- Boot ---------- */
 S.boot("client",()=>{
   document.getElementById("daySub").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric",year:"numeric"});
-  seedIfEmpty();
+  purgeSeedOnce();
   S.watch(COLL,()=>render());
   sync(false);
 });
