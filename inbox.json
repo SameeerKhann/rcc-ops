@@ -1,5 +1,17 @@
 {
-  "note": "Claude writes clients it reads from your day/week screenshots here. In the app, open Import Day → 'Sync new clients' (or just reload) to pull them in. Re-syncing is safe — duplicates are skipped.",
-  "updatedAt": "",
-  "entries": []
+  "note": "Claude writes clients read from your screenshots here. In the app: Client Follow-Ups -> 'Sync from Claude'. Re-syncing is safe (duplicates skipped).",
+  "updatedAt": "2026-08-07",
+  "entries": [
+    {
+      "serviceDate": "2026-08-07",
+      "names": [
+        "Helmuth Sultanow",
+        "Kristie-Anne Macdonald",
+        "Kristina Mutti",
+        "Thomas Wallace",
+        "Hardip Mutti",
+        "Zack Poulpon"
+      ]
+    }
+  ]
 }
