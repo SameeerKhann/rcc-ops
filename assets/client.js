@@ -75,10 +75,6 @@ function card(t){
     </div>
     <div class="checks" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px">${checks}</div>
     <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;align-items:center">
-      <button class="btn sm gold" data-act="review" data-id="${t.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.9 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>Send review</button>
-      ${phoneBtn}
-      <button class="btn sm" data-act="ghl" data-id="${t.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>GHL</button>
-      <button class="btn sm" data-act="note" data-id="${t.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>Note</button>
       <select class="inp" data-act="status" data-id="${t.id}" style="width:auto;padding:8px 30px 8px 11px;font-size:12px;font-weight:600">${opts}</select>
       <button class="btn sm danger" data-act="del" data-id="${t.id}" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>
     </div>
