@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Team Tasks · Right Choice Cleaning</title>
+<meta name="theme-color" content="#0A0B0D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<header class="topbar" id="topbar"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Team Tasks</h1>
+      <div class="sub">Assign work between Sameer &amp; Dmitry — with Chrome reminders.</div>
+    </div>
+    <button class="btn gold" id="newBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New task</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="segment" id="scope" style="margin-bottom:14px">
+    <button data-scope="mine" class="on">Assigned to me</button>
+    <button data-scope="iassigned">I assigned</button>
+    <button data-scope="all">All</button>
+  </div>
+
+  <div class="filters">
+    <input class="inp search" id="search" placeholder="Search tasks…">
+    <select class="inp" id="fAssignee"><option value="">Anyone</option></select>
+    <select class="inp" id="fStatus">
+      <option value="">Any status</option>
+      <option value="todo">To do</option>
+      <option value="doing">In progress</option>
+      <option value="done">Done</option>
+    </select>
+    <select class="inp" id="fPriority">
+      <option value="">Any priority</option>
+      <option value="urgent">Urgent</option>
+      <option value="high">High</option>
+      <option value="normal">Normal</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="inp" id="fSort">
+      <option value="due">Sort: due date</option>
+      <option value="priority">Sort: priority</option>
+      <option value="created">Sort: newest</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<!-- New / edit task modal -->
+<div class="modal-bg" id="taskModal">
+  <div class="modal">
+    <h3 id="mTitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>New task</h3>
+    <div class="field"><label>Title <em>*</em></label><input class="inp" id="tTitle" placeholder="e.g. Order microfibre cloths"></div>
+    <div class="field"><label>Details</label><textarea class="inp" id="tDesc" placeholder="Any context…"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label>Assign to</label><select class="inp" id="tAssignee"></select></div>
+      <div class="field"><label>Priority</label><select class="inp" id="tPriority">
+        <option value="normal">Normal</option><option value="low">Low</option><option value="high">High</option><option value="urgent">Urgent</option>
+      </select></div>
+    </div>
+    <div class="field"><label>Due date</label><input type="date" class="inp" id="tDue"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+      <button class="btn ghost" id="tCancel">Cancel</button>
+      <button class="btn gold" id="tSave">Create &amp; assign</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/firebase-config.js"></script>
+<script src="assets/store.js"></script>
+<script src="assets/team.js"></script>
+</body>
+</html>

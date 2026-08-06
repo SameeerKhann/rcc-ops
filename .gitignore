@@ -1,0 +1,7 @@
+# local backups exported from the app
+rcc-backup-*.json
+.DS_Store
+Thumbs.db
+
+# local editor/dev config
+.claude/

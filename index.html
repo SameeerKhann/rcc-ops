@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Client Follow-Ups · Right Choice Cleaning</title>
+<meta name="theme-color" content="#0A0B0D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0BB55"/><stop offset="1" stop-color="#C99B34"/></linearGradient>
+</defs></svg>
+
+<header class="topbar" id="topbar"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Client Follow-Ups</h1>
+      <div class="sub" id="daySub"></div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn" id="syncBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg>Sync from Claude</button>
+      <button class="btn gold" id="addBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add day</button>
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <input class="inp search" id="search" placeholder="Search client…">
+    <select class="inp" id="fState">
+      <option value="due">Due &amp; overdue</option>
+      <option value="all">All follow-ups</option>
+      <option value="open">Open</option>
+      <option value="done">Completed</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<!-- Add-day modal -->
+<div class="modal-bg" id="addModal">
+  <div class="modal">
+    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Add a day's clients</h3>
+    <p style="color:var(--muted);font-size:12px;margin:0 0 14px">Paste a screenshot into your Claude chat — Claude reads the names into <b>inbox.json</b>, then use <b>Sync from Claude</b>. Or type names below. A follow-up set is created for the day after each service.</p>
+    <div class="field"><label>Service date</label><input type="date" class="inp" id="mDate"></div>
+    <div class="field"><label>Names — one per line (a <b>YYYY-MM-DD</b> line switches the date)</label>
+      <textarea class="inp" id="mNames" style="min-height:150px;font-family:'Space Grotesk',monospace" placeholder="2026-08-07&#10;Helmuth Sultanow&#10;Thomas Wallace"></textarea></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:4px">
+      <button class="btn ghost" id="mCancel">Cancel</button>
+      <button class="btn gold" id="mCreate">Create follow-ups</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/firebase-config.js"></script>
+<script src="assets/store.js"></script>
+<script src="assets/client.js"></script>
+</body>
+</html>
